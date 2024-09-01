@@ -1,0 +1,71 @@
+:root {
+  --cell-size: 32px;
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+  width: calc(var(--cell-size) * 3 + 20px);
+  height: calc(var(--cell-size) * 3 + 20px);
+  background-color: antiquewhite;
+}
+
+.cell {
+  width: var(--cell-size);
+  height: var(--cell-size);
+  background-color: red;
+  border-radius: 5px;
+  transition-duration: 0.3s;
+}
+
+.cell--dark {
+  background-color: #536dc1;
+}
+
+.cell--dark::before {
+  content: "";
+  display: block;
+  width: calc(var(--cell-size) / 2);
+  height: calc(var(--cell-size) / 2);
+  border-radius: 100%;
+  background-color: #002b98;
+  transform: translate(50%, 50%);
+  transition: background-color 0.3s ease-in-out;
+}
+
+.cell--light {
+  position: relative;
+  background-color: #ffebaa;
+}
+
+.cell--light::before {
+  content: "";
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  width: calc(var(--cell-size) / 1.5);
+  height: calc(var(--cell-size) / 1.5);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #ffebaa; /* Initial background color */
+  background-image: url(./sun.svg);
+  background-size: contain;
+  border-radius: 100px;
+}
+
+.cell--light::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: rgba(255, 235, 170, 0.5); /* Semi-transparent overlay */
+  border-radius: 100px;
+  transition: background-color 0.3s ease-in-out;
+  pointer-events: none; /* Allow clicks through the overlay */
+}
